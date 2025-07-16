@@ -85,6 +85,9 @@ jobs:
         run: |
           docker pull ${{secrets.AWS_ECR_LOGIN_URI}}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
 
+      - name: Remove old container if exists
+        run: docker rm -f performancepredictor || true
+
       - name: Run Docker Image to serve users
         run: |
           docker run -d -p 8080:8080 --ipc="host" --name=performancepredictor -e 'AWS_ACCESS_KEY_ID=${{ secrets.AWS_REGION }}' ${{ secrets.AWS_ECR_LOGIN_URI}}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
