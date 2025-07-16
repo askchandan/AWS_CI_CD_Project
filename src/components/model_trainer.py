@@ -23,7 +23,7 @@ from src.utils import save_object, evaluate_models
 
 @dataclass
 class ModelTrainerConfig:
-    trained_model_file_path: str = os.path.join(os.getcwd(),'artifacts', 'model.pkl')
+    trained_model_file_path: str = os.path.join('artifacts', 'model.pkl')
 
 
 class ModelTrainer:
